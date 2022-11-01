@@ -1,3 +1,4 @@
+use std::iter::Zip;
 use std::ops::Range;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
@@ -25,6 +26,47 @@ fn range(a: i16, b: i16) -> Range<i16>
 {
     if a<=b { return a..b+1; }
     return b..a+1;
+}
+
+fn range_in_order(mut x1: i16, x2: i16, mut y1: i16, y2: i16) -> Zip<std::vec::IntoIter<i16>, std::vec::IntoIter<i16>>
+{
+    let mut a: Vec<i16> = vec![];
+    let mut b: Vec<i16> = vec![];
+
+    if x1 <= x2 
+    { 
+        while x1<=x2 {
+            a.push(x1);
+            x1 += 1;
+        }
+    }
+    else 
+    {
+        while x1>=x2 {
+            a.push(x1);
+            x1 -= 1;
+        }
+        
+    }
+
+    if y1 <= y2 
+    { 
+        while y1<=y2 {
+            b.push(y1);
+            y1 += 1;
+        }
+    }
+    else 
+    {
+        while y1>=y2 {
+            b.push(y1);
+            y1 -= 1;
+        }
+        
+    }
+
+    return a.into_iter().zip(b);
+
 }
 
 fn solve(lines: Vec<String>) 
@@ -71,6 +113,15 @@ fn solve(lines: Vec<String>)
             for i in range(x1, x2)
             {
                 floor[y1 as usize][i as usize] += 1;
+            }
+        }
+
+        else
+        {
+            for it in range_in_order(x1, x2, y1, y2)
+            {
+                let (x, y) = it;
+                floor[y as usize][x as usize] += 1;
             }
         }
     }
