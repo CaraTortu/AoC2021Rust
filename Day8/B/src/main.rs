@@ -62,12 +62,12 @@ fn solve(lines: Vec<String>)
                 5 => {
                     if      get_overlap(digit, one)  == 2 { decoded.push("3") }
                     else if get_overlap(digit, four) == 2 { decoded.push("2") }
-                    else                                         { decoded.push("5") }
+                    else                                  { decoded.push("5") }
                 },
                 6 => {
                     if      get_overlap(digit, four) == 4 { decoded.push("9") }
                     else if get_overlap(digit, one)  == 2 { decoded.push("0") }
-                    else                                         { decoded.push("6") }
+                    else                                  { decoded.push("6") }
                 },
                 _ => panic!("We should not get here")
             }
