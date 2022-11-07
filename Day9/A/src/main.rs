@@ -40,7 +40,7 @@ fn solve(lines: Vec<String>)
     for line in lines
     {
         let line = line.split("").filter(|d| *d != "").collect::<Vec<_>>();
-        map.push(line.iter().map(|d| d.parse::<i8>().unwrap()).collect::<Vec<_>>())
+        map.push(line.iter().map(|d| d.parse::<i8>().unwrap()).collect::<Vec<_>>());
     }
 
     for (i, row) in map.iter().enumerate()
